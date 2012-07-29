@@ -1,0 +1,10 @@
+#ifndef MOVEFRAMEOBJ_H
+#define MOVEFRAMEOBJ_H
+
+class CMoveFrameObj
+{
+public:
+
+};
+
+#endif // MOVEFRAMEOBJ_H

@@ -1,0 +1,14 @@
+all: cpp11
+
+cpp11: main.o
+	g++ -lncurses -lboost_thread obj/main.o obj/CPoint.o obj/key_handler.o obj/frame.o obj/snake.o obj/cmovesnake.o obj/clogger.o obj/CColisionDetector.o -o bin/snake
+
+main.o: src/main.cpp
+	g++ -std=c++0x -c -g src/main.cpp -o obj/main.o 
+	g++ -std=c++0x -c -g src/CPoint.cpp -o obj/CPoint.o
+	g++ -std=c++0x -c -g src/key_handler.cpp -o obj/key_handler.o -lncurses
+	g++ -std=c++0x -c -g src/frame.cpp -o obj/frame.o
+	g++ -std=c++0x -c -g src/snake.cpp -o obj/snake.o
+	g++ -std=c++0x -c -g src/CMoveSnake.cpp -o obj/cmovesnake.o
+	g++ -std=c++0x -c -g src/CLogger.cpp -o obj/clogger.o
+	g++ -std=c++0x -c -g src/CColisionDetector.cpp -o obj/CColisionDetector.o
