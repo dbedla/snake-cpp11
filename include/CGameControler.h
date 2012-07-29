@@ -1,0 +1,4 @@
+#ifndef CGAMECONTROLER_H
+#define CGAMECONTROLER_H
+
+#endif // CGAMECONTROLER_H
