@@ -15,7 +15,8 @@ SOURCES +=\
     src/CLogger.cpp \
     src/CColisionDetector.cpp \
     src/CBasicWall.cpp \
-    src/CGameControler.cpp
+    src/CGameControler.cpp \
+    src/CItemToEat.cpp
 
 HEADERS  +=\
    include/main.h \
@@ -31,7 +32,10 @@ HEADERS  +=\
     include/CColisionDetector.h \
     include/IColisionDetector.h \
     include/CBasicWall.h \
-    include/CGameControler.h
+    include/CGameControler.h \
+    include/CItemsToEat.h
+
+
 
 
 

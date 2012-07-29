@@ -1,7 +1,7 @@
 all: cpp11
 
 cpp11: main.o
-	g++ -lboost_thread obj/main.o obj/CPoint.o obj/key_handler.o obj/frame.o obj/snake.o obj/cmovesnake.o obj/clogger.o obj/CColisionDetector.o obj/CBasicWall.o obj/CGameControler.o -o bin/snake
+	g++ -lboost_thread obj/main.o obj/CPoint.o obj/key_handler.o obj/frame.o obj/snake.o obj/cmovesnake.o obj/clogger.o obj/CColisionDetector.o obj/CBasicWall.o obj/CGameControler.o obj/CItemToEat.o -o bin/snake
 
 main.o: src/main.cpp
 	g++ -std=c++0x -c -g src/main.cpp -o obj/main.o 
@@ -14,3 +14,4 @@ main.o: src/main.cpp
 	g++ -std=c++0x -c -g src/CColisionDetector.cpp -o obj/CColisionDetector.o
 	g++ -std=c++0x -c -g src/CBasicWall.cpp -o obj/CBasicWall.o
 	g++ -std=c++0x -c -g src/CGameControler.cpp -o obj/CGameControler.o
+	g++ -std=c++0x -c -g src/CItemToEat.cpp -o obj/CItemToEat.o
