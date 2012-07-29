@@ -14,7 +14,8 @@ SOURCES +=\
     src/CMoveSnake.cpp \
     src/CLogger.cpp \
     src/CColisionDetector.cpp \
-    src/CBasicWall.cpp
+    src/CBasicWall.cpp \
+    src/CGameControler.cpp
 
 HEADERS  +=\
    include/main.h \
@@ -29,7 +30,10 @@ HEADERS  +=\
     include/CLogger.h \
     include/CColisionDetector.h \
     include/IColisionDetector.h \
-    include/CBasicWall.h
+    include/CBasicWall.h \
+    include/CGameControler.h
+
+
 
 
 

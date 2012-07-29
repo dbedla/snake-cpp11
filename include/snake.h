@@ -24,5 +24,4 @@ private:
     const int minSnakeLen;
 };
 
-
 #endif // SNAKE_H
