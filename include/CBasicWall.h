@@ -13,7 +13,6 @@ public:
 private:
     PointsList _wall;
 
-
 };
 
 #endif // CBASICWALL_H

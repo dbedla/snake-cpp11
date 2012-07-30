@@ -11,6 +11,7 @@
 #include "../include/CLogger.h"
 #include "../include/CBasicWall.h"
 #include "../include/CColisionDetector.h"
+#include "../include/CItemsToEat.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>
@@ -24,6 +25,7 @@ public:
 
 private:
     //CPoint obj;
+    CItemToEat *eatMe;
     CFrame *frame;
     CSnake snake;
     CKeyHandler keyHandler;
@@ -35,7 +37,8 @@ private:
     boost::mutex _mtxReadKey;
     void parseKeyMove(CMoveSnake &DirectionKeeper);
 
-    void addSingleNonColisionElement();
+    void addSingleNonColisionElementToEat();
+    void snakeEatelement();
 
     void stopKeboardRead();
     bool _play;

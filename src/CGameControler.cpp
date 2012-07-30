@@ -1,5 +1,5 @@
 #include "../include/CGameControler.h"
-#include "../include/CItemsToEat.h"
+
 
 void CGameControler::stopKeboardRead()
 {
@@ -31,6 +31,14 @@ void CGameControler::RunGame()
         {
             std::cout<<"kolizja\nkoniec gry\n";
             break;
+        }
+        if(!eatMe->getNumberOfElementsToEat())
+        {
+            //addSingleNonColisionElementToEat();
+        }
+        else
+        {
+            snakeEatelement();
         }
        // if(i%10 == 0){snake.addBodyPart();}
     }
@@ -83,10 +91,30 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
     _play = _readKey = true;
     frame = new CFrame();
     wall = new CBasicWall(frame->getWidith(), frame->getHeight());
+    eatMe = new CItemToEat(frame->getWidith(), frame->getHeight());
 }
 
 
-void CGameControler::addSingleNonColisionElement()
+void CGameControler::addSingleNonColisionElementToEat()
 {
+    CPoint newElementToeat;// = eatMe->createRandomPoint();
 
+    while( !colision_detector(*eatMe, *wall) )
+    {
+        newElementToeat = eatMe->createRandomPoint();
+    }
+
+    eatMe->addElementToEat(newElementToeat);
+}
+
+
+void CGameControler::snakeEatelement()
+{
+    if( !colision_detector(snake, *eatMe) )
+    {
+        const PointsList snakeBody = snake.getFrameElements();
+        std::for_each(snakeBody.begin(), snakeBody.end(),
+                      [&eatMe](const CPoint p){ eatMe->removeElementToEat(p); } );
+        snake.addBodyPart();
+    }
 }
