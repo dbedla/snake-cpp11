@@ -38,7 +38,7 @@ private:
     void parseKeyMove(CMoveSnake &DirectionKeeper);
 
     void addSingleNonColisionElementToEat();
-    void snakeEatelement();
+    void snakeEatElement();
 
     void stopKeboardRead();
     bool _play;

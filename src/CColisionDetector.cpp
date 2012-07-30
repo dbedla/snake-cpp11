@@ -6,6 +6,11 @@ bool CColisionDetector::operator()( IFrameElement<PointsList> &movableObj, IFram
     const PointsList& staticElements = staticObj.getFrameElements();
     const PointsList& moveableElements = movableObj.getFrameElements();
 
+    if(staticElements.size()==0 || moveableElements.size()==0)
+    {
+        return false;
+    }
+
     PointsList wholePoints;
     wholePoints.insert(wholePoints.end(), staticElements.begin(), staticElements.end());
     wholePoints.insert(wholePoints.end(), moveableElements.begin(), moveableElements.end());

@@ -1,5 +1,6 @@
 #include "../include/CGameControler.h"
 
+#include "../include/CLogger.h"
 
 void CGameControler::stopKeboardRead()
 {
@@ -18,11 +19,12 @@ void CGameControler::RunGame()
     while(_play)
     {
         logger.Log("snake pos", snake.getFrameElements());
-        boost::this_thread::sleep(boost::posix_time::milliseconds(500));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(300));
         snake.moveSnake(move);
         frame->clearFrame();
         frame->drawObjIntoFrame(snake);
         frame->drawObjIntoFrame(*wall);
+        frame->drawObjIntoFrame(*eatMe);
         frame->drawFrame();
         //parseKeyMove(moveSnakeObj);
 
@@ -32,13 +34,13 @@ void CGameControler::RunGame()
             std::cout<<"kolizja\nkoniec gry\n";
             break;
         }
-        if(!eatMe->getNumberOfElementsToEat())
+        if(eatMe->getNumberOfElementsToEat() == 0)
         {
-            //addSingleNonColisionElementToEat();
+            addSingleNonColisionElementToEat();
         }
         else
         {
-            snakeEatelement();
+            snakeEatElement();
         }
        // if(i%10 == 0){snake.addBodyPart();}
     }
@@ -97,20 +99,25 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
 
 void CGameControler::addSingleNonColisionElementToEat()
 {
-    CPoint newElementToeat;// = eatMe->createRandomPoint();
+    CLogger l("eatme.txt");
+    CPoint newElementToEat;// = eatMe->createRandomPoint();
 
-    while( !colision_detector(*eatMe, *wall) )
+    while( colision_detector(*eatMe, *wall) || eatMe->getNumberOfElementsToEat()==0 )
     {
-        newElementToeat = eatMe->createRandomPoint();
+        newElementToEat = eatMe->createRandomPoint();
+        l.Log("randompoint: ", newElementToEat);
+        eatMe->addElementToEat(newElementToEat);
     }
+    eatMe->addElementToEat(newElementToEat);
 
-    eatMe->addElementToEat(newElementToeat);
+    l.Log("point at end: ", newElementToEat);
+
 }
 
 
-void CGameControler::snakeEatelement()
+void CGameControler::snakeEatElement()
 {
-    if( !colision_detector(snake, *eatMe) )
+    if( colision_detector(snake, *eatMe) )
     {
         const PointsList snakeBody = snake.getFrameElements();
         std::for_each(snakeBody.begin(), snakeBody.end(),

@@ -13,6 +13,7 @@
 #include "../include/CLogger.h"
 #include "../include/CBasicWall.h"
 #include "../include/CColisionDetector.h"
+#include "../include/CItemsToEat.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>
@@ -69,7 +70,28 @@ void tester_colision_detector(void)
 
 }
 
+void test_random_in_eat_element_class()
+{
+    CItemToEat eat(20, 30);
 
+    CPoint p;
+
+    for(int i=0; i< 10; i++)
+    {
+        p =  eat.createRandomPoint();
+        boost::this_thread::sleep(boost::posix_time::milliseconds(100*i));
+        std::cout<<"(" << p._x << "," << p._y << ")" <<std::endl;
+    }
+
+}
+
+void test_eat_element_function()
+{
+    CItemToEat eat(20, 30);
+
+    eat.addElementToEat(CPoint(1,1));
+
+}
 
 int main(void)
 {
@@ -86,10 +108,12 @@ int main(void)
     CGameControler Game;
     Game.RunGame();
 
+    //test_eat_element_function();
+    //test_random_in_eat_element_class();
     //testerOfsnakemove();
-
     //tester_colision_detector();
 
     //std::cout<<"2\n";
     return 0;
 }
+
