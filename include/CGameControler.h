@@ -34,6 +34,9 @@ private:
     bool _readKey;
     boost::mutex _mtxReadKey;
     void parseKeyMove(CMoveSnake &DirectionKeeper);
+
+    void addSingleNonColisionElement();
+
     void stopKeboardRead();
     bool _play;
 };

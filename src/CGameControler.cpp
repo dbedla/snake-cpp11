@@ -1,4 +1,5 @@
 #include "../include/CGameControler.h"
+#include "../include/CItemsToEat.h"
 
 void CGameControler::stopKeboardRead()
 {
@@ -8,7 +9,8 @@ void CGameControler::stopKeboardRead()
 
 void CGameControler::RunGame()
 {
-    std::function<void(PointsList&)> move = std::bind(&CMoveSnake::moveObj, &moveSnakeObj, std::placeholders::_1) ;
+    std::function<void(PointsList&)> move = std::bind(&CMoveSnake::moveObj,
+                                                      &moveSnakeObj, std::placeholders::_1) ;
     std::function<void(CMoveSnake&)> th_key_handler_func =
             std::bind(&CGameControler::parseKeyMove, this, std::placeholders::_1 );
     boost::thread workerThreadKeyHandler(th_key_handler_func, boost::ref(moveSnakeObj));
@@ -83,3 +85,8 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
     wall = new CBasicWall(frame->getWidith(), frame->getHeight());
 }
 
+
+void CGameControler::addSingleNonColisionElement()
+{
+
+}
