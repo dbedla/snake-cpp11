@@ -9,6 +9,9 @@
 #include <functional>
 #include <algorithm>
 
+//MIN_SNAKE_LENGTH should be at least 2
+const unsigned int MIN_SNAKE_LENGTH = 3;
+
 class CSnake: public IFrameElement<PointsList >
 {
 public:

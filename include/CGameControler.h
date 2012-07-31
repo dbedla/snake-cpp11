@@ -19,7 +19,8 @@
 #include <memory>
 
 const unsigned int START_SPEED = 300;
-const unsigned int SPEED_UP = 30;
+const unsigned int SPEED_UP = 20;
+
 
 class CGameControler
 {
@@ -32,7 +33,7 @@ private:
     unsigned int _gameSpeed;
     std::shared_ptr<CItemToEat> eatMe;
     std::shared_ptr<CFrame> frame;
-    CSnake snake;
+    std::shared_ptr<CSnake> snake;
     CKeyHandler keyHandler;
     CMoveSnake moveSnakeObj;
     CLogger logger;

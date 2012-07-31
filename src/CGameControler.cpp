@@ -15,21 +15,19 @@ void CGameControler::RunGame()
     std::function<void(CMoveSnake&)> th_key_handler_func =
             std::bind(&CGameControler::parseKeyMove, this, std::placeholders::_1 );
     boost::thread workerThreadKeyHandler(th_key_handler_func, boost::ref(moveSnakeObj));
-    bool elemnt_colision = false;
+
     while(_play)
     {
-        logger.Log("snake pos", snake.getFrameElements());
+        logger.Log("snake pos", snake->getFrameElements());
         boost::this_thread::sleep(boost::posix_time::milliseconds(_gameSpeed));
-        snake.moveSnake(move);
+        snake->moveSnake(move);
         frame->clearFrame();
-        frame->drawObjIntoFrame(snake);
+        frame->drawObjIntoFrame(*snake);
         frame->drawObjIntoFrame(*wall);
         frame->drawObjIntoFrame(*eatMe);
         frame->drawFrame();
-        //parseKeyMove(moveSnakeObj);
 
-        elemnt_colision = colision_detector( *wall, snake);
-        if(elemnt_colision)
+        if(colision_detector( *wall, *snake))
         {
             std::cout<<"kolizja\nkoniec gry\n";
             break;
@@ -46,7 +44,6 @@ void CGameControler::RunGame()
             }
 
         }
-       // if(i%10 == 0){snake.addBodyPart();}
     }
     stopKeboardRead();
     workerThreadKeyHandler.join();
@@ -91,13 +88,14 @@ void CGameControler::parseKeyMove(CMoveSnake &DirectionKeeper)
 
 }
 
-CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt")
+CGameControler::CGameControler(): logger("log_File.txt")
 {
     std::ios::sync_with_stdio(true);
     _play = _readKey = true;
     frame.reset( new CFrame());
     wall.reset( new CBasicWall(frame->getWidith(), frame->getHeight()) );
     eatMe.reset( new CItemToEat(frame->getWidith()-1, frame->getHeight()-1) );
+    snake.reset(new CSnake( CPoint(frame->getWidith()/2, frame->getHeight()/2), MIN_SNAKE_LENGTH)  );
     _gameSpeed = START_SPEED;
 }
 
@@ -105,7 +103,7 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
 void CGameControler::addSingleNonColisionElementToEat()
 {
     CLogger l("eatme.txt");
-    CPoint newElementToEat;// = eatMe->createRandomPoint();
+    CPoint newElementToEat;
 
     do
     {
@@ -113,8 +111,6 @@ void CGameControler::addSingleNonColisionElementToEat()
         l.Log("randompoint: ", newElementToEat);
         eatMe->addElementToEat(newElementToEat);
     }while( colision_detector(*eatMe, *wall) || eatMe->getNumberOfElementsToEat()==0 );
-    //eatMe->addElementToEat(newElementToEat);
-
     l.Log("point at end: ", newElementToEat);
 
 }
@@ -130,12 +126,12 @@ void CGameControler::speedUP()
 
 bool CGameControler::snakeEatElement()
 {
-    if( colision_detector(snake, *eatMe) )
+    if( colision_detector(*snake, *eatMe) )
     {
-        const PointsList snakeBody = snake.getFrameElements();
+        const PointsList snakeBody = snake->getFrameElements();
         std::for_each(snakeBody.begin(), snakeBody.end(),
                       [&eatMe](const CPoint p){ eatMe->removeElementToEat(p); } );
-        snake.addBodyPart();
+        snake->addBodyPart();
         return true;
     }
     return false;

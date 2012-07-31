@@ -1,7 +1,7 @@
 #include "../include/snake.h"
 
 
-CSnake::CSnake(CPoint headPosition, int startLength):minSnakeLen(3)
+CSnake::CSnake(CPoint headPosition, int startLength):minSnakeLen(MIN_SNAKE_LENGTH)
 {
     if(startLength < minSnakeLen)
     {
