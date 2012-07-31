@@ -93,7 +93,7 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
     _play = _readKey = true;
     frame.reset( new CFrame());
     wall.reset( new CBasicWall(frame->getWidith(), frame->getHeight()) );
-    eatMe.reset( new CItemToEat(frame->getWidith(), frame->getHeight()) );
+    eatMe.reset( new CItemToEat(frame->getWidith()-1, frame->getHeight()-1) );
 }
 
 
