@@ -91,9 +91,9 @@ CGameControler::CGameControler(): snake(CPoint(10, 10), 6), logger("log_File.txt
 {
     std::ios::sync_with_stdio(true);
     _play = _readKey = true;
-    frame = new CFrame();
-    wall = new CBasicWall(frame->getWidith(), frame->getHeight());
-    eatMe = new CItemToEat(frame->getWidith(), frame->getHeight());
+    frame.reset( new CFrame());
+    wall.reset( new CBasicWall(frame->getWidith(), frame->getHeight()) );
+    eatMe.reset( new CItemToEat(frame->getWidith(), frame->getHeight()) );
 }
 
 

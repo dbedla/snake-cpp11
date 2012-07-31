@@ -16,6 +16,7 @@
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>
 #include <boost/thread.hpp>
+#include <memory>
 
 class CGameControler
 {
@@ -25,13 +26,13 @@ public:
 
 private:
     //CPoint obj;
-    CItemToEat *eatMe;
-    CFrame *frame;
+    std::shared_ptr<CItemToEat> eatMe;
+    std::shared_ptr<CFrame> frame;
     CSnake snake;
     CKeyHandler keyHandler;
     CMoveSnake moveSnakeObj;
     CLogger logger;
-    CBasicWall *wall;
+    std::shared_ptr<CBasicWall> wall;
     CColisionDetector colision_detector;
     bool _readKey;
     boost::mutex _mtxReadKey;
