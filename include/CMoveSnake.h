@@ -29,6 +29,7 @@ private:
     void moveRight(CPoint &);
     void moveUp(CPoint &);
     void moveDown(CPoint &);
+    bool isDirectionOpposed(Direction &direction);
 
 };
 

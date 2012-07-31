@@ -18,6 +18,9 @@
 #include <boost/thread.hpp>
 #include <memory>
 
+const unsigned int START_SPEED = 300;
+const unsigned int SPEED_UP = 30;
+
 class CGameControler
 {
 public:
@@ -26,6 +29,7 @@ public:
 
 private:
     //CPoint obj;
+    unsigned int _gameSpeed;
     std::shared_ptr<CItemToEat> eatMe;
     std::shared_ptr<CFrame> frame;
     CSnake snake;
@@ -39,7 +43,8 @@ private:
     void parseKeyMove(CMoveSnake &DirectionKeeper);
 
     void addSingleNonColisionElementToEat();
-    void snakeEatElement();
+    bool snakeEatElement();
+    void speedUP();
 
     void stopKeboardRead();
     bool _play;

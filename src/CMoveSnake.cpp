@@ -55,27 +55,18 @@ void CMoveSnake::moveDown(CPoint & head)
 
 void CMoveSnake::moveUp(CPoint &head)
 {
-    //CPoint newBodypart = body.front();
     head._y--;
-    //body.push_front(newBodypart);
-    //body.pop_back();
 }
 
 void CMoveSnake::moveRight(CPoint & head)
 {
-    //CPoint newBodypart = body.front();
     head._x++;
-    //body.push_front(newBodypart);
-    //body.pop_back();
     return;
 }
 
 void CMoveSnake::moveLeft(CPoint & head)
 {
-    //CPoint newBodypart = body.front();
     head._x--;
-    //body.push_front(newBodypart);
-    //body.pop_back();
     return;
 }
 
