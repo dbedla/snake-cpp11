@@ -1,6 +1,4 @@
 #include "../include/key_handler.h"
-//#include <ncurses.h>
-//#include <cstdio>
 #include <iostream>
 
 CKeyHandler::CKeyHandler()

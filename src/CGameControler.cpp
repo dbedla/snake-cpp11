@@ -22,9 +22,9 @@ void CGameControler::RunGame()
         boost::this_thread::sleep(boost::posix_time::milliseconds(_gameSpeed));
         snake->moveSnake(move);
         frame->clearFrame();
-        frame->drawObjIntoFrame(*snake);
-        frame->drawObjIntoFrame(*wall);
-        frame->drawObjIntoFrame(*eatMe);
+        frame->drawObjIntoFrame(*snake, 'o');
+        frame->drawObjIntoFrame(*wall, '#');
+        frame->drawObjIntoFrame(*eatMe, '@');
         frame->drawFrame();
 
         if(colision_detector( *wall, *snake))

@@ -52,11 +52,10 @@ void CFrame::clearFrame()
 }
 
 
-void CFrame::drawObjIntoFrame(const IFrameElement<PointsList >& obj)
+void CFrame::drawObjIntoFrame(const IFrameElement<PointsList >& obj, GraphicalRepresentation graphPointRep)
 {
     auto elements = obj.getFrameElements();
-    //auto fun =  std::bind( &CFrame::SetPoint, this, std::placeholders::_1, '@');
 
     std::for_each(elements.begin(), elements.end(),
-                  [&_frame](CPoint p){_frame[p._y][p._x] = '@';});
+                  [&_frame, graphPointRep](CPoint &p){_frame[p._y][p._x] = graphPointRep;});
 }
