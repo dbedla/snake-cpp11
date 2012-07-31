@@ -43,10 +43,10 @@ void CItemToEat::initRand()
 {
     std::random_device rdX;
     std::random_device rdY;
-    _rand_enginX = new std::mt19937(rdX());
-    _rand_enginY = new std::mt19937(rdY());
-    _randomRangeX = new std::uniform_int_distribution<unsigned int> (0,_rangeX);
-    _randomRangeY = new std::uniform_int_distribution<unsigned int> (0,_rangeY);
+    _rand_enginX.reset( new std::mt19937(rdX()) );
+    _rand_enginY.reset( new std::mt19937(rdY()) );
+    _randomRangeX.reset( new std::uniform_int_distribution<unsigned int> (0,_rangeX) );
+    _randomRangeY.reset( new std::uniform_int_distribution<unsigned int> (0,_rangeY) );
 }
 
 const PointsList& CItemToEat::getFrameElements() const

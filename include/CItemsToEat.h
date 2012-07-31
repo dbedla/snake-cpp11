@@ -5,6 +5,7 @@
 #include "IFrameElement.h"
 #include <algorithm>
 #include <random>
+#include <memory>
 
 class CItemToEat:  public IFrameElement<PointsList >
 {
@@ -19,10 +20,10 @@ public:
     unsigned int getNumberOfElementsToEat();
     CPoint createRandomPoint();
 private:
-    std::mt19937 *_rand_enginX;
-    std::mt19937 *_rand_enginY;
-    std::uniform_int_distribution<unsigned int> *_randomRangeX;
-    std::uniform_int_distribution<unsigned int> *_randomRangeY;
+    std::shared_ptr<std::mt19937> _rand_enginX;
+    std::shared_ptr<std::mt19937> _rand_enginY;
+    std::shared_ptr<std::uniform_int_distribution<unsigned int> > _randomRangeX;
+    std::shared_ptr<std::uniform_int_distribution<unsigned int> >_randomRangeY;
     unsigned int _rangeX;
     unsigned int _rangeY;
     PointsList _itemsToEat;
