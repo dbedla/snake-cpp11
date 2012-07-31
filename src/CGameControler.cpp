@@ -102,13 +102,13 @@ void CGameControler::addSingleNonColisionElementToEat()
     CLogger l("eatme.txt");
     CPoint newElementToEat;// = eatMe->createRandomPoint();
 
-    while( colision_detector(*eatMe, *wall) || eatMe->getNumberOfElementsToEat()==0 )
+    do
     {
         newElementToEat = eatMe->createRandomPoint();
         l.Log("randompoint: ", newElementToEat);
         eatMe->addElementToEat(newElementToEat);
-    }
-    eatMe->addElementToEat(newElementToEat);
+    }while( colision_detector(*eatMe, *wall) || eatMe->getNumberOfElementsToEat()==0 );
+    //eatMe->addElementToEat(newElementToEat);
 
     l.Log("point at end: ", newElementToEat);
 
