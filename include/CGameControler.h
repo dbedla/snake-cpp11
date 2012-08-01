@@ -44,6 +44,8 @@ private:
     CColisionDetector _colision;
     bool _readKey;
     boost::mutex _mtxReadKey;
+    bool _play;
+
     void parseKeyMove(CMoveSnake &DirectionKeeper);
 
     void addSingleNonColisionElementToEat();
@@ -51,7 +53,8 @@ private:
     void speedUP();
 
     void stopKeboardRead();
-    bool _play;
+    void frameDriver();
+    bool snakeDriver();
 };
 
 

@@ -8,10 +8,9 @@ void CGameControler::stopKeboardRead()
     _readKey = false;
 }
 
+
 void CGameControler::RunGame()
 {
-    std::function<void(PointsList&)> move = std::bind(&CMoveSnake::moveObj,
-                                                      &_moveSnakeObj, std::placeholders::_1) ;
     std::function<void(CMoveSnake&)> th_key_handler_func =
             std::bind(&CGameControler::parseKeyMove, this, std::placeholders::_1 );
     boost::thread workerThreadKeyHandler(th_key_handler_func, boost::ref(_moveSnakeObj));
@@ -20,31 +19,11 @@ void CGameControler::RunGame()
     {
         logger.Log("snake pos", _snake->getFrameElements());
         boost::this_thread::sleep(boost::posix_time::milliseconds(_gameSpeed));
-        _snake->moveSnake(move);
-        _frame->clearFrame();
-        _frame->drawObjIntoFrame(*_snake, GRAPHIC_SNAKE_BODY);
-        _frame->drawObjIntoFrame(*_wall, GRAPHIC_WALL);
-        _frame->drawObjIntoFrame(*_eatMe, GRAPHIC_ELEMENT_TO_EAT);
-        _frame->drawFrame();
 
-        if(_colision( *_wall, *_snake))
-        {
-            std::cout<<"kolizja\nkoniec gry\n";
-            break;
-        }
-        if(_eatMe->getNumberOfElementsToEat() == 0)
-        {
-            addSingleNonColisionElementToEat();
-        }
-        else
-        {
-            if(snakeEatElement())
-            {
-                speedUP();
-            }
-
-        }
+        _play = snakeDriver();
+        frameDriver();
     }
+    std::cout<<"game over\n";
     stopKeboardRead();
     workerThreadKeyHandler.join();
 }
@@ -135,4 +114,39 @@ bool CGameControler::snakeEatElement()
         return true;
     }
     return false;
+}
+
+void CGameControler::frameDriver()
+{
+    _frame->clearFrame();
+    _frame->drawObjIntoFrame(*_snake, GRAPHIC_SNAKE_BODY);
+    _frame->drawObjIntoFrame(*_wall, GRAPHIC_WALL);
+    _frame->drawObjIntoFrame(*_eatMe, GRAPHIC_ELEMENT_TO_EAT);
+    _frame->drawFrame();
+}
+
+bool CGameControler::snakeDriver()
+{
+    std::function<void(PointsList&)> move = std::bind(&CMoveSnake::moveObj,
+                                                      &_moveSnakeObj, std::placeholders::_1) ;
+    if(_colision( *_wall, *_snake))
+    {
+        //std::cout<<"kolizja\nkoniec gry\n";
+        return false;
+        //break;
+    }
+    if(_eatMe->getNumberOfElementsToEat() == 0)
+    {
+        addSingleNonColisionElementToEat();
+    }
+    else
+    {
+        if(snakeEatElement())
+        {
+            speedUP();
+        }
+
+    }
+    _snake->moveSnake(move);
+    return true;
 }
