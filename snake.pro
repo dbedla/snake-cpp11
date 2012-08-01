@@ -33,7 +33,9 @@ HEADERS  +=\
     include/IColisionDetector.h \
     include/CBasicWall.h \
     include/CGameControler.h \
-    include/CItemsToEat.h
+    include/CItemsToEat.h \
+    include/IFrame.h
+
 
 
 

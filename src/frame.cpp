@@ -8,7 +8,7 @@ CFrame::CFrame()
 
     for(int i=0; i<terminal_properties.ws_row-1; i++ )
     {
-        _frame.push_back( std::vector<char>(terminal_properties.ws_col,' ') );
+        _frame.push_back( std::vector<char>(terminal_properties.ws_col,EMPTY_FIELD) );
     }
 
 }
@@ -47,7 +47,7 @@ void CFrame::drawFrame()
 
 void CFrame::clearFrame()
 {
-    auto clear = [] (std::vector<char> &line){ line.assign(line.size(), ' ');};
+    auto clear = [] (std::vector<char> &line){ line.assign(line.size(), EMPTY_FIELD);};
     std::for_each(_frame.begin(), _frame.end(), clear );
 }
 
