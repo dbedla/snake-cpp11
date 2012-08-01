@@ -12,6 +12,7 @@
 #include "../include/CBasicWall.h"
 #include "../include/CColisionDetector.h"
 #include "../include/CItemsToEat.h"
+#include "../include/IFrame.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>
@@ -20,7 +21,9 @@
 
 const unsigned int START_SPEED = 300;
 const unsigned int SPEED_UP = 20;
-
+const char GRAPHIC_SNAKE_BODY = 'o';
+const char GRAPHIC_WALL = '#';
+const char GRAPHIC_ELEMENT_TO_EAT = '@';
 
 class CGameControler
 {
@@ -31,14 +34,14 @@ public:
 private:
     //CPoint obj;
     unsigned int _gameSpeed;
-    std::shared_ptr<CItemToEat> eatMe;
-    std::shared_ptr<CFrame> frame;
-    std::shared_ptr<CSnake> snake;
-    CKeyHandler keyHandler;
-    CMoveSnake moveSnakeObj;
+    std::shared_ptr<CItemToEat> _eatMe;
+    std::shared_ptr<IFrame<unsigned int, GraphicalRepresentation, PointsList> > _frame;
+    std::shared_ptr<CSnake> _snake;
+    CKeyHandler _keyHandler;
+    CMoveSnake _moveSnakeObj;
     CLogger logger;
-    std::shared_ptr<CBasicWall> wall;
-    CColisionDetector colision_detector;
+    std::shared_ptr<CBasicWall> _wall;
+    CColisionDetector _colision;
     bool _readKey;
     boost::mutex _mtxReadKey;
     void parseKeyMove(CMoveSnake &DirectionKeeper);
