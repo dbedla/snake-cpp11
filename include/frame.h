@@ -9,6 +9,7 @@
 #include "IFrameElement.h"
 #include <algorithm>
 #include <functional>
+#include "IFrame.h"
 
 #include <cstdio>
 #include <termios.h>
@@ -20,7 +21,7 @@ typedef char GraphicalRepresentation;
 const GraphicalRepresentation EMPTY_FIELD = ' ';
 
 
-class CFrame
+class CFrame: public IFrame<unsigned int, GraphicalRepresentation, PointsList>
 {
 public:
     CFrame();
@@ -30,6 +31,7 @@ public:
     void clearFrame();
     unsigned int getWidith();
     unsigned int getHeight();
+    virtual ~CFrame();
 private:
     std::vector< std::vector<char> > _frame;
 

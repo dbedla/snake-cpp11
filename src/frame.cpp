@@ -1,5 +1,9 @@
 #include "../include/frame.h"
 
+CFrame::~CFrame()
+{
+
+}
 
 CFrame::CFrame()
 {
