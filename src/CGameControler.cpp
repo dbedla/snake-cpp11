@@ -18,7 +18,7 @@ void CGameControler::RunGame()
     while(_play)
     {
         logger.Log("snake pos", _snake->getFrameElements());
-        boost::this_thread::sleep(boost::posix_time::milliseconds(_gameSpeed));
+        boost::this_thread::sleep(boost::posix_time::milliseconds(_gameTimeout));
 
         _play = snakeDriver();
         frameDriver();
@@ -30,40 +30,36 @@ void CGameControler::RunGame()
 
 void CGameControler::parseKeyMove(CMoveSnake &DirectionKeeper)
 {
+    //I also know how to use switch instruction :D
     while(_readKey)
     {
-    char k = _keyHandler.getKeyFromKeybord();
-    switch (k)
-    {
-        case LEFT:
+        char k = _keyHandler.getKeyFromKeybord();
+        switch (k)
         {
-            DirectionKeeper.setDirection(LEFT);
-            break;
-        }
-        case RIGHT:
-        {
-            DirectionKeeper.setDirection(RIGHT);
-            break;
-        }
-        case DOWN:
-        {
-            DirectionKeeper.setDirection(DOWN);
-            break;
-        }
-        case UP:
-        {
-            DirectionKeeper.setDirection(UP);
-            break;
-        }
-        case 'q':
-        {
-            _play = false;
-        }
-        default:
-        {
+            case LEFT:
+            {
+                DirectionKeeper.setDirection(LEFT);
+                break;
+            }
+            case RIGHT:
+            {
+                DirectionKeeper.setDirection(RIGHT);
+                break;
+            }
+            case DOWN:
+            {
+                DirectionKeeper.setDirection(DOWN);
+                break;
+            }
+            case UP:
+            {
+                DirectionKeeper.setDirection(UP);
+                break;
+            }
+
         }
     }
-    }
+
 
 }
 
@@ -75,7 +71,7 @@ CGameControler::CGameControler(): logger("log_File.txt")
     _wall.reset( new CBasicWall(_frame->getWidith(), _frame->getHeight()) );
     _eatMe.reset( new CItemToEat(_frame->getWidith()-1, _frame->getHeight()-1) );
     _snake.reset(new CSnake( CPoint(_frame->getWidith()/2, _frame->getHeight()/2), MIN_SNAKE_LENGTH)  );
-    _gameSpeed = START_SPEED;
+    _gameTimeout = MAX_TIMEOUT;
 }
 
 
@@ -96,10 +92,10 @@ void CGameControler::addSingleNonColisionElementToEat()
 
 void CGameControler::speedUP()
 {
-    unsigned int newSpeed = _gameSpeed - SPEED_UP;
-    if(newSpeed < _gameSpeed)
+    _gameTimeout -= DELTA_TIMEOUT;
+    if(_gameTimeout <= MIN_TIMEOUT)
     {
-        _gameSpeed = newSpeed;
+        _gameTimeout = MIN_TIMEOUT;
     }
 }
 
@@ -131,9 +127,7 @@ bool CGameControler::snakeDriver()
                                                       &_moveSnakeObj, std::placeholders::_1) ;
     if(_colision( *_wall, *_snake))
     {
-        //std::cout<<"kolizja\nkoniec gry\n";
         return false;
-        //break;
     }
     if(_eatMe->getNumberOfElementsToEat() == 0)
     {

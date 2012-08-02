@@ -18,9 +18,11 @@
 #include <boost/thread/thread_time.hpp>
 #include <boost/thread.hpp>
 #include <memory>
+#include <algorithm>
 
-const unsigned int START_SPEED = 300;
-const unsigned int SPEED_UP = 20;
+const unsigned int MAX_TIMEOUT = 300;
+const unsigned int MIN_TIMEOUT  = 100;
+const unsigned int DELTA_TIMEOUT = 20;
 const char GRAPHIC_SNAKE_BODY = 'o';
 const char GRAPHIC_WALL = '#';
 const char GRAPHIC_ELEMENT_TO_EAT = '@';
@@ -33,7 +35,7 @@ public:
 
 private:
     //CPoint obj;
-    unsigned int _gameSpeed;
+    unsigned int _gameTimeout;
     std::shared_ptr<CItemToEat> _eatMe;
     std::shared_ptr<IFrame<unsigned int, GraphicalRepresentation, PointsList> > _frame;
     std::shared_ptr<CSnake> _snake;

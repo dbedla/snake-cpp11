@@ -4,8 +4,7 @@
 
 CMoveSnake::CMoveSnake(Direction startDirection )
 {
-    _oldDirection = _newDirection = startDirection;
-    _oldDirection = RIGHT;
+    _newDirection = startDirection;
     _move[UP]    = std::bind(&CMoveSnake::moveUp,  this, std::placeholders::_1);
     _move[DOWN]  = std::bind(&CMoveSnake::moveDown, this, std::placeholders::_1);
     _move[LEFT]  = std::bind(&CMoveSnake::moveLeft, this, std::placeholders::_1);
@@ -23,10 +22,7 @@ Direction CMoveSnake::getDirection()
 void CMoveSnake::setDirection(Direction direction)
 {
     boost::lock_guard<boost::mutex>  guard( _direction_mutex);
-    if( (direction == UP    && _newDirection != DOWN) ||
-        (direction == DOWN  && _newDirection != UP)   ||
-        (direction == LEFT  && _newDirection != RIGHT)||
-        (direction == RIGHT && _newDirection != LEFT)  )
+    if( ! isDirectionOpposed(direction) )
     {
         if(_newDirection != direction  )
         {
@@ -71,4 +67,14 @@ void CMoveSnake::moveLeft(CPoint & head)
 }
 
 
-
+bool CMoveSnake::isDirectionOpposed(Direction &direction)
+{
+    if( (direction == UP    && _newDirection != DOWN) ||
+        (direction == DOWN  && _newDirection != UP)   ||
+        (direction == LEFT  && _newDirection != RIGHT)||
+        (direction == RIGHT && _newDirection != LEFT)  )
+    {
+        return false;
+    }
+    return true;
+}
