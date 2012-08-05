@@ -1,5 +1,4 @@
 #include "../include/key_handler.h"
-//#include <iostream>
 
 CKeyHandler::CKeyHandler()
 {
@@ -46,23 +45,22 @@ void CKeyHandler::parseKeyMove()
         {
             case LEFT:
             {
-                //DirectionKeeper.setDirection(LEFT);
                 notyfie(LEFT);
                 break;
             }
             case RIGHT:
             {
-                notyfie(RIGHT);;//DirectionKeeper.setDirection(RIGHT);
+                notyfie(RIGHT);
                 break;
             }
             case DOWN:
             {
-                notyfie(DOWN);//DirectionKeeper.setDirection(DOWN);
+                notyfie(DOWN);
                 break;
             }
             case UP:
             {
-                notyfie(UP);//DirectionKeeper.setDirection(UP);
+                notyfie(UP);
                 break;
             }
 

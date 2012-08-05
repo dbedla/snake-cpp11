@@ -24,6 +24,7 @@ void CLogger::Log(std::string s, CPoint p)
 void CLogger::Log(std::string s, PointsList vecOfPoints)
 {
     logFile << s <<" : ";
-    std::for_each(vecOfPoints.begin(), vecOfPoints.end(), [&logFile](CPoint &p){logFile << " (" << p._x << "," << p._y <<") ";});
+    std::for_each(vecOfPoints.begin(), vecOfPoints.end(),
+                  [&logFile](CPoint &p){logFile << " (" << p._x << "," << p._y <<") ";});
     logFile << std::endl;
 }

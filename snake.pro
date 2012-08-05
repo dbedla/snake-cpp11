@@ -16,7 +16,8 @@ SOURCES +=\
     src/CColisionDetector.cpp \
     src/CBasicWall.cpp \
     src/CGameControler.cpp \
-    src/CItemToEat.cpp
+    src/CItemToEat.cpp \
+    test/TestCPoint.cpp
 
 HEADERS  +=\
    include/main.h \
