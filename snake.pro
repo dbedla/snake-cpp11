@@ -17,7 +17,9 @@ SOURCES +=\
     src/CBasicWall.cpp \
     src/CGameControler.cpp \
     src/CItemToEat.cpp \
-    test/TestCPoint.cpp
+    test/TestCPoint.cpp \
+    test/main_test.cpp \
+    test/TestColisionDetector.cpp
 
 HEADERS  +=\
    include/main.h \
@@ -37,6 +39,8 @@ HEADERS  +=\
     include/CItemsToEat.h \
     include/IFrame.h \
     include/IObserver.h
+
+
 
 
 
