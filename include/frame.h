@@ -19,7 +19,8 @@
   */
 typedef char GraphicalRepresentation;
 const GraphicalRepresentation EMPTY_FIELD = ' ';
-
+const unsigned int MIN_SCREEN_WIDITH= 30;
+const unsigned int MIN_SCREEN_HEIGHT= 20;
 
 class CFrame: public IFrame<unsigned int, GraphicalRepresentation, PointsList>
 {

@@ -16,7 +16,7 @@ class CMoveSnake: public IMoveFrameObj<PointsList, Direction>, public IObserver<
 public:
     CMoveSnake(Direction startDirection = UP);
     virtual void moveObj(PointsList & snake);
-    virtual void setDirection(Direction direction);
+    virtual void setDirection(const Direction& direction);
     virtual Direction getDirection();
 
     //IObserver
@@ -34,7 +34,7 @@ private:
     void moveRight(CPoint &);
     void moveUp(CPoint &);
     void moveDown(CPoint &);
-    bool isDirectionOpposed(Direction &direction);
+    bool isDirectionOpposed(const Direction &direction);
 
 };
 

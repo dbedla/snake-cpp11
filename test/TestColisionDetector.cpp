@@ -46,9 +46,9 @@ void CTestColisionDetector::colision()
     el1.p.push_back(CPoint(1,1));
     el1.p.push_back(CPoint(2,1));
     el1.p.push_back(CPoint(2,3));
-
     el2.p.push_back(CPoint(2,3));
     el3.p.push_back( CPoint(4,3) );
+
     CPPUNIT_ASSERT( detector(el1, el2) ); // colision
     CPPUNIT_ASSERT( !detector(el1, el3) ); //no colision
     CPPUNIT_ASSERT( !detector(el4, el3) ); //1 empty

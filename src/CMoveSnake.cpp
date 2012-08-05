@@ -27,7 +27,7 @@ Direction CMoveSnake::getDirection()
 }
 
 
-void CMoveSnake::setDirection(Direction direction)
+void CMoveSnake::setDirection(const Direction& direction)
 {
     boost::lock_guard<boost::mutex>  guard( _direction_mutex);
     if( ! isDirectionOpposed(direction) )
@@ -75,7 +75,7 @@ void CMoveSnake::moveLeft(CPoint & head)
 }
 
 
-bool CMoveSnake::isDirectionOpposed(Direction &direction)
+bool CMoveSnake::isDirectionOpposed(const Direction &direction)
 {
     if( (direction == UP    && _oldDirection != DOWN) ||
         (direction == DOWN  && _oldDirection != UP)   ||

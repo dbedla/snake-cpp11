@@ -10,9 +10,14 @@ CFrame::CFrame()
     struct winsize terminal_properties;
     ioctl(0, TIOCGWINSZ, &terminal_properties);
 
-    for(int i=0; i<terminal_properties.ws_row-1; i++ )
+    int height = (MIN_SCREEN_HEIGHT > terminal_properties.ws_row-1) ?
+                MIN_SCREEN_HEIGHT : terminal_properties.ws_row-1;
+    int widith  = (MIN_SCREEN_WIDITH > terminal_properties.ws_col) ?
+                MIN_SCREEN_WIDITH : terminal_properties.ws_col;
+
+    for(int i=0; i<height; i++ )
     {
-        _frame.push_back( std::vector<char>(terminal_properties.ws_col,EMPTY_FIELD) );
+        _frame.push_back( std::vector<char>(widith,EMPTY_FIELD) );
     }
 
 }
