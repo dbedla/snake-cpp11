@@ -4,6 +4,17 @@
 
 
 
+CGameControler* CGameControler::_instance = NULL;
+
+CGameControler& CGameControler::getInstance()
+{
+    if(_instance == NULL)
+    {
+        _instance = new CGameControler;
+    }
+    return *_instance;
+}
+
 void CGameControler::RunGame()
 {
     _keyHandler.attach(&_moveSnakeObj);

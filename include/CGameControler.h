@@ -30,11 +30,13 @@ const char GRAPHIC_ELEMENT_TO_EAT = '@';
 class CGameControler
 {
 public:
-    CGameControler();
-    void RunGame();
 
+    void RunGame();
+    static CGameControler& getInstance();
 private:
-    //CPoint obj;
+    CGameControler();
+    static CGameControler* _instance;
+
     unsigned int _gameTimeout;
     std::shared_ptr<CItemToEat> _eatMe;
     std::shared_ptr<IFrame<unsigned int, GraphicalRepresentation, PointsList> > _frame;
@@ -44,17 +46,13 @@ private:
     CLogger logger;
     std::shared_ptr<CBasicWall> _wall;
     CColisionDetector _colision;
-    //bool _readKey;
 
     bool _play;
-
-    //void parseKeyMove(CMoveSnake &DirectionKeeper);
 
     void addSingleNonColisionElementToEat();
     bool snakeEatElement();
     void speedUP();
 
-//    void stopKeboardRead();
     void frameDriver();
     bool snakeDriver();
 };

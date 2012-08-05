@@ -105,7 +105,7 @@ int main(void)
     keyHandler();
     */
 
-    CGameControler Game;
+    CGameControler &Game = CGameControler::getInstance();
     Game.RunGame();
 
     //test_eat_element_function();
