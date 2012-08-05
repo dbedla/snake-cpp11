@@ -44,17 +44,17 @@ private:
     CLogger logger;
     std::shared_ptr<CBasicWall> _wall;
     CColisionDetector _colision;
-    bool _readKey;
-    boost::mutex _mtxReadKey;
+    //bool _readKey;
+
     bool _play;
 
-    void parseKeyMove(CMoveSnake &DirectionKeeper);
+    //void parseKeyMove(CMoveSnake &DirectionKeeper);
 
     void addSingleNonColisionElementToEat();
     bool snakeEatElement();
     void speedUP();
 
-    void stopKeboardRead();
+//    void stopKeboardRead();
     void frameDriver();
     bool snakeDriver();
 };

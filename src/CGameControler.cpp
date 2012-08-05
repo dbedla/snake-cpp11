@@ -2,18 +2,13 @@
 
 #include "../include/CLogger.h"
 
-void CGameControler::stopKeboardRead()
-{
-    boost::lock_guard<boost::mutex>  guard( _mtxReadKey);
-    _readKey = false;
-}
 
 
 void CGameControler::RunGame()
 {
-    std::function<void(CMoveSnake&)> th_key_handler_func =
-            std::bind(&CGameControler::parseKeyMove, this, std::placeholders::_1 );
-    boost::thread workerThreadKeyHandler(th_key_handler_func, boost::ref(_moveSnakeObj));
+    _keyHandler.attach(&_moveSnakeObj);
+    std::function<void()> th_key_handler_func = std::bind(&CKeyHandler::parseKeyMove, &_keyHandler );
+    boost::thread workerThreadKeyHandler(th_key_handler_func);
 
     while(_play)
     {
@@ -24,49 +19,16 @@ void CGameControler::RunGame()
         frameDriver();
     }
     std::cout<<"game over\n";
-    stopKeboardRead();
+    _keyHandler.stopKeboardRead();
     workerThreadKeyHandler.join();
 }
 
-void CGameControler::parseKeyMove(CMoveSnake &DirectionKeeper)
-{
-    //I also know how to use switch instruction :D
-    while(_readKey)
-    {
-        char k = _keyHandler.getKeyFromKeybord();
-        switch (k)
-        {
-            case LEFT:
-            {
-                DirectionKeeper.setDirection(LEFT);
-                break;
-            }
-            case RIGHT:
-            {
-                DirectionKeeper.setDirection(RIGHT);
-                break;
-            }
-            case DOWN:
-            {
-                DirectionKeeper.setDirection(DOWN);
-                break;
-            }
-            case UP:
-            {
-                DirectionKeeper.setDirection(UP);
-                break;
-            }
 
-        }
-    }
-
-
-}
 
 CGameControler::CGameControler(): logger("log_File.txt")
 {
     std::ios::sync_with_stdio(true);
-    _play = _readKey = true;
+    _play = true;
     _frame.reset( new CFrame());
     _wall.reset( new CBasicWall(_frame->getWidith(), _frame->getHeight()) );
     _eatMe.reset( new CItemToEat(_frame->getWidith()-1, _frame->getHeight()-1) );

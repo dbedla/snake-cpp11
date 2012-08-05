@@ -9,14 +9,19 @@
 #include <vector>
 #include <algorithm>
 #include <boost/thread.hpp>
+#include "IObserver.h"
 
-class CMoveSnake: public IMoveFrameObj<PointsList, Direction>
+class CMoveSnake: public IMoveFrameObj<PointsList, Direction>, public IObserver<Direction>
 {
 public:
     CMoveSnake(Direction startDirection = UP);
     virtual void moveObj(PointsList & snake);
     virtual void setDirection(Direction direction);
     virtual Direction getDirection();
+
+    //IObserver
+    virtual void update(Direction);
+
 
 private:
     boost::mutex _direction_mutex;

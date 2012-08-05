@@ -86,3 +86,9 @@ bool CMoveSnake::isDirectionOpposed(Direction &direction)
     }
     return true;
 }
+
+
+void CMoveSnake::update(Direction direction)
+{
+    setDirection(direction);
+}

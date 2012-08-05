@@ -1,10 +1,23 @@
 #include "../include/key_handler.h"
-#include <iostream>
+//#include <iostream>
 
 CKeyHandler::CKeyHandler()
 {
     _key = '\0';
+    _readKey = true;
 
+}
+
+void CKeyHandler::stopKeboardRead()
+{
+    boost::lock_guard<boost::mutex>  guard( _mtxReadKey);
+    _readKey = false;
+}
+
+bool CKeyHandler::getReadKey()
+{
+    boost::lock_guard<boost::mutex>  guard( _mtxReadKey);
+    return _readKey;
 }
 
 char CKeyHandler::getKeyFromKeybord()
@@ -23,3 +36,52 @@ char CKeyHandler::getKeyFromKeybord()
 
 }
 
+void CKeyHandler::parseKeyMove()
+{
+    //I also know how to use switch instruction :D
+    while(getReadKey())
+    {
+        char k = getKeyFromKeybord();
+        switch (k)
+        {
+            case LEFT:
+            {
+                //DirectionKeeper.setDirection(LEFT);
+                notyfie(LEFT);
+                break;
+            }
+            case RIGHT:
+            {
+                notyfie(RIGHT);;//DirectionKeeper.setDirection(RIGHT);
+                break;
+            }
+            case DOWN:
+            {
+                notyfie(DOWN);//DirectionKeeper.setDirection(DOWN);
+                break;
+            }
+            case UP:
+            {
+                notyfie(UP);//DirectionKeeper.setDirection(UP);
+                break;
+            }
+
+        }
+    }
+}
+
+void CKeyHandler::notyfie(const Direction passData)
+{
+    std::for_each(_observerList.begin(), _observerList.end(),
+                  [&passData](IObserver<Direction> *observer){observer->update(passData);});
+}
+
+void CKeyHandler::attach(IObserver<Direction> *newObserver)
+{
+ _observerList.push_back(newObserver);
+}
+
+void CKeyHandler::detach(IObserver<Direction> *oldObserver)
+{
+     _observerList.remove(oldObserver);
+}
