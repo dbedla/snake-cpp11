@@ -44,23 +44,11 @@ void CKeyHandler::parseKeyMove()
         switch (k)
         {
             case LEFT:
-            {
-                notyfie(LEFT);
-                break;
-            }
             case RIGHT:
-            {
-                notyfie(RIGHT);
-                break;
-            }
             case DOWN:
-            {
-                notyfie(DOWN);
-                break;
-            }
             case UP:
             {
-                notyfie(UP);
+                notyfie((Direction) k);
                 break;
             }
 
