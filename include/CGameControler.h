@@ -13,6 +13,7 @@
 #include "../include/CColisionDetector.h"
 #include "../include/CItemsToEat.h"
 #include "../include/IFrame.h"
+#include "../include/CLogger.h"
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>
@@ -44,7 +45,7 @@ private:
     std::shared_ptr<CSnake> _snake;
     CKeyHandler _keyHandler;
     CMoveSnake _moveSnakeObj;
-    CLogger logger;
+    //CLogger &_logger;
     std::shared_ptr<CBasicWall> _wall;
     CColisionDetector _colision;
 

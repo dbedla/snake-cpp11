@@ -1,6 +1,6 @@
 #include "../include/CGameControler.h"
 
-#include "../include/CLogger.h"
+//#include "../include/CLogger.h"
 
 
 
@@ -23,7 +23,7 @@ void CGameControler::RunGame()
 
     while(_play)
     {
-        logger.Log("snake pos", _snake->getFrameElements());
+        //logger.Log("snake pos", _snake->getFrameElements());
         boost::this_thread::sleep(boost::posix_time::milliseconds(_gameTimeout));
 
         _play = snakeDriver();
@@ -36,7 +36,7 @@ void CGameControler::RunGame()
 
 
 
-CGameControler::CGameControler(): logger("log_File.txt")
+CGameControler::CGameControler()
 {
     std::ios::sync_with_stdio(true);
     _play = true;
@@ -50,16 +50,16 @@ CGameControler::CGameControler(): logger("log_File.txt")
 
 void CGameControler::addSingleNonColisionElementToEat()
 {
-    CLogger l("eatme.txt");
+    //CLogger l("eatme.txt");
     CPoint newElementToEat;
 
     do
     {
         newElementToEat = _eatMe->createRandomPoint();
-        l.Log("randompoint: ", newElementToEat);
+      //  l.Log("randompoint: ", newElementToEat);
         _eatMe->addElementToEat(newElementToEat);
     }while( _colision(*_eatMe, *_wall) || _eatMe->getNumberOfElementsToEat()==0 );
-    l.Log("point at end: ", newElementToEat);
+    //l.Log("point at end: ", newElementToEat);
 
 }
 
