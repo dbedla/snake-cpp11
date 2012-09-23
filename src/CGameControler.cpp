@@ -23,7 +23,7 @@ void CGameControler::RunGame()
 
     while(_play)
     {
-        //logger.Log("snake pos", _snake->getFrameElements());
+        CLogger::getInstance().Log("snake pos", _snake->getFrameElements());
         boost::this_thread::sleep(boost::posix_time::milliseconds(_gameTimeout));
 
         _play = snakeDriver();
