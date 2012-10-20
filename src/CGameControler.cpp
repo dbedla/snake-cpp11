@@ -60,11 +60,13 @@ void CGameControler::addSingleNonColisionElementToEat()
         _eatMe->addElementToEat(newElementToEat);
     }while( _colision(*_eatMe, *_wall) || _eatMe->getNumberOfElementsToEat()==0 );
     //l.Log("point at end: ", newElementToEat);
+    CLogger::getInstance().Log("new eatable element added at pos", _eatMe->getFrameElements());
 
 }
 
 void CGameControler::speedUP()
 {
+    CLogger::getInstance().Log("snake speed up");
     _gameTimeout -= DELTA_TIMEOUT;
     if(_gameTimeout <= MIN_TIMEOUT)
     {
@@ -78,8 +80,9 @@ bool CGameControler::snakeEatElement()
     {
         const PointsList& snakeBody = _snake->getFrameElements();
         std::for_each(snakeBody.begin(), snakeBody.end(),
-                      [&_eatMe](const CPoint p){ _eatMe->removeElementToEat(p); } );
+                      [&_eatMe](const CPoint p){ _eatMe->removeElementToEat(p);} );
         _snake->addBodyPart();
+
         return true;
     }
     return false;
@@ -100,6 +103,7 @@ bool CGameControler::snakeDriver()
                                                       &_moveSnakeObj, std::placeholders::_1) ;
     if(_colision( *_wall, *_snake))
     {
+        CLogger::getInstance().Log("snake collision");
         return false;
     }
     if(_eatMe->getNumberOfElementsToEat() == 0)
@@ -110,6 +114,7 @@ bool CGameControler::snakeDriver()
     {
         if(snakeEatElement())
         {
+            CLogger::getInstance().Log("snake eat element");
             speedUP();
         }
 
