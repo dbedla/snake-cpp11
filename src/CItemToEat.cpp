@@ -17,7 +17,7 @@ CItemToEat::CItemToEat(const CPoint& newPoint)
 CItemToEat::CItemToEat(const PointsList& srcPoints)
 {
     std::for_each(srcPoints.begin(), srcPoints.end(),
-                  [&_itemsToEat](const CPoint& newPoint){_itemsToEat.push_back(newPoint);});
+                  [&](const CPoint& newPoint){_itemsToEat.push_back(newPoint);});
 }
 
 void CItemToEat::addElementToEat(const CPoint & newPoint)

@@ -66,5 +66,5 @@ void CFrame::drawObjIntoFrame(const IFrameElement<PointsList >& obj, GraphicalRe
     auto elements = obj.getFrameElements();
 
     std::for_each(elements.begin(), elements.end(),
-                  [&_frame, graphPointRep](CPoint &p){_frame[p._y][p._x] = graphPointRep;});
+                  [&](CPoint &p){_frame[p._y][p._x] = graphPointRep;});
 }

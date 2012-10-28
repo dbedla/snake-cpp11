@@ -41,6 +41,6 @@ void CLogger::Log(std::string s, PointsList vecOfPoints)
     boost::lock_guard<boost::mutex>  guard( CLogger::_write_file_mutex );
     logFile << s <<" : ";
     std::for_each(vecOfPoints.begin(), vecOfPoints.end(),
-                  [&logFile](CPoint &p){logFile << " (" << p._x << "," << p._y <<") ";});
+                  [&](CPoint &p){logFile << " (" << p._x << "," << p._y <<") ";});
     logFile << std::endl;
 }

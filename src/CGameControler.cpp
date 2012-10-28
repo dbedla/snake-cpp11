@@ -80,7 +80,7 @@ bool CGameControler::snakeEatElement()
     {
         const PointsList& snakeBody = _snake->getFrameElements();
         std::for_each(snakeBody.begin(), snakeBody.end(),
-                      [&_eatMe](const CPoint p){ _eatMe->removeElementToEat(p);} );
+                      [&](const CPoint p){ _eatMe->removeElementToEat(p);} );
         _snake->addBodyPart();
 
         return true;
