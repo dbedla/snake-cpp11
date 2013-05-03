@@ -1,17 +1,52 @@
-all: cpp11
+CC=g++
+LD=g++
 
-cpp11: main.o
-	g++ obj/main.o obj/CPoint.o obj/key_handler.o obj/frame.o obj/snake.o obj/cmovesnake.o obj/clogger.o obj/CColisionDetector.o obj/CBasicWall.o obj/CGameControler.o obj/CItemToEat.o -o bin/snake -lboost_thread
+#flags for releas target
+CFLAGS=-g -std=c++0x -Wall -pedantic 
 
-main.o: src/main.cpp
-	g++ -std=c++0x -c -g src/main.cpp -o obj/main.o 
-	g++ -std=c++0x -c -g src/CPoint.cpp -o obj/CPoint.o
-	g++ -std=c++0x -c -g src/key_handler.cpp -o obj/key_handler.o
-	g++ -std=c++0x -c -g src/frame.cpp -o obj/frame.o
-	g++ -std=c++0x -c -g src/snake.cpp -o obj/snake.o
-	g++ -std=c++0x -c -g src/CMoveSnake.cpp -o obj/cmovesnake.o
-	g++ -std=c++0x -c -g src/CLogger.cpp -o obj/clogger.o
-	g++ -std=c++0x -c -g src/CColisionDetector.cpp -o obj/CColisionDetector.o
-	g++ -std=c++0x -c -g src/CBasicWall.cpp -o obj/CBasicWall.o
-	g++ -std=c++0x -c -g src/CGameControler.cpp -o obj/CGameControler.o
-	g++ -std=c++0x -c -g src/CItemToEat.cpp -o obj/CItemToEat.o
+#flags for linker
+LFLAGS=-lboost_thread
+
+#flags for test target
+TEST_LFLAGS=$(LFLAGS) -lcppunit
+
+SRC := $(wildcard src/*.cpp)
+TEST_SRC := $(wildcard test/test_src/*.cpp)
+OBJ := $(addprefix obj/,$(notdir $(SRC:.cpp=.o)))
+TEST_OBJ := $(addprefix test/test_obj/,$(notdir $(TEST_SRC:.cpp=.o)))
+INC = -I include/ 
+
+
+RELEASE_NAME = bin/snake
+TEST_NAME = bin/t_snake
+
+
+all: release
+#	echo $(SRC)
+#	echo $(OBJ)
+#	echo $(INC)
+
+#releas target
+release: $(OBJ)
+	$(LD) $(OBJ) obj/main.o -o $(RELEASE_NAME) $(LFLAGS) 
+
+obj/%.o: src/%.cpp
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INC) -c -o obj/main.o main.cpp
+
+
+#test target
+test: $(OBJ) $(TEST_OBJ)
+	$(LD) $(OBJ) obj/main_test.o -o $(TEST_NAME) $(TEST_LFLAGS)
+
+test/test_obj/%.o: test/test_src/%.cpp 
+	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
+	$(CC) $(CFLAGS) $(INC) -c -o obj/main_test.o main_test.cpp
+
+
+#clean
+clean:
+	$(RM) bin/*
+	$(RM) obj/*
+	$(RM) test/test_obj/*
+

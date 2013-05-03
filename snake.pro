@@ -19,7 +19,12 @@ SOURCES +=\
     src/CItemToEat.cpp \
     test/TestCPoint.cpp \
     test/main_test.cpp \
-    test/TestColisionDetector.cpp
+    test/TestColisionDetector.cpp \
+    main_test.cpp \
+    main.cpp \
+    test/test_src/TestCPoint.cpp \
+    test/test_src/TestColisionDetector.cpp
+    
 
 HEADERS  +=\
    include/main.h \
