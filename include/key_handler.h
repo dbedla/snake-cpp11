@@ -9,8 +9,8 @@
 
 #include <sys/stat.h>
 #include <fcntl.h>
-#include "IObserver.h"
-#include "def.h"
+#include <IObserver.h>
+#include <def.h>
 #include <list>
 #include <algorithm>
 #include <boost/thread.hpp>

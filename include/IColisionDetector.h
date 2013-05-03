@@ -1,7 +1,7 @@
 #ifndef ICOLISIONDETECTOR_H
 #define ICOLISIONDETECTOR_H
 
-#include "IFrameElement.h"
+#include <IFrameElement.h>
 
 template <typename Points>
 class IColisionDetector

@@ -1,8 +1,8 @@
 #ifndef CITEMSTOEAT_H
 #define CITEMSTOEAT_H
 
-#include "CPoint.h"
-#include "IFrameElement.h"
+#include <CPoint.h>
+#include <IFrameElement.h>
 #include <algorithm>
 #include <random>
 #include <memory>

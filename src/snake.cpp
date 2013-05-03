@@ -1,4 +1,4 @@
-#include "../include/snake.h"
+#include <snake.h>
 
 
 CSnake::CSnake(CPoint headPosition, int startLength):minSnakeLen(MIN_SNAKE_LENGTH)

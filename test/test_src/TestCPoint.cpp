@@ -1,4 +1,4 @@
-#include "../include/CPoint.h"
+#include <CPoint.h>
 #include <cppunit/TestAssert.h>
 #include <cppunit/TestFixture.h>
 #include <cppunit/Test.h>

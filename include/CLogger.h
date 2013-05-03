@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <vector>
-#include "CPoint.h"
+#include <CPoint.h>
 #include <fstream>
 #include <algorithm>
 #include <boost/thread.hpp>

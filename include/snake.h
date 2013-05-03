@@ -2,10 +2,10 @@
 #define SNAKE_H
 
 //#include <vector>
-#include "CPoint.h"
+#include <CPoint.h>
 #include <vector>
-#include "def.h"
-#include "IFrameElement.h"
+#include <def.h>
+#include <IFrameElement.h>
 #include <functional>
 #include <algorithm>
 

@@ -1,4 +1,4 @@
-#include "../include/CMoveSnake.h"
+#include <CMoveSnake.h>
 
 #include <iostream>
 

@@ -3,9 +3,10 @@
 #include <cppunit/Test.h>
 #include <cppunit/TestSuite.h>
 #include <cppunit/extensions/HelperMacros.h>
-#include "../include/CColisionDetector.h"
-#include "../include/IFrameElement.h"
-#include "../include/CPoint.h"
+
+#include <CColisionDetector.h>
+#include <IFrameElement.h>
+#include <CPoint.h>
 
 class CFakeFrameEl: public IFrameElement<PointsList>
 {

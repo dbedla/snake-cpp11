@@ -1,7 +1,7 @@
 #ifndef IMAPELEMENT_H
 #define IMAPELEMENT_H
 
-#include "CPoint.h"
+#include <CPoint.h>
 #include <vector>
 
 //

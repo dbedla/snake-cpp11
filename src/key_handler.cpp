@@ -1,4 +1,4 @@
-#include "../include/key_handler.h"
+#include <key_handler.h>
 
 CKeyHandler::CKeyHandler()
 {

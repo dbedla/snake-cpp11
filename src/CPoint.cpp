@@ -1,4 +1,4 @@
-#include "../include/CPoint.h"
+#include <CPoint.h>
 
 
 bool CPoint::operator<(const CPoint& rhs) const

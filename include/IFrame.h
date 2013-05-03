@@ -1,7 +1,7 @@
 #ifndef IFRAME_H
 #define IFRAME_H
 
-#include"IFrameElement.h"
+#include <IFrameElement.h>
 
 template<typename GridUnit, typename GraphRep, typename Points>
 class IFrame

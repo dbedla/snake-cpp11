@@ -1,4 +1,4 @@
-#include "../include/CColisionDetector.h"
+#include <CColisionDetector.h>
 
 
 bool CColisionDetector::operator()( IFrameElement<PointsList> &movableObj, IFrameElement<PointsList> &staticObj)

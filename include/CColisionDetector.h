@@ -1,9 +1,9 @@
 #ifndef CCOLISIONDETECTOR_H
 #define CCOLISIONDETECTOR_H
 
-#include "IColisionDetector.h"
-#include "IFrameElement.h"
-#include "CPoint.h"
+#include <IColisionDetector.h>
+#include <IFrameElement.h>
+#include <CPoint.h>
 
 class CColisionDetector: public IColisionDetector<PointsList>
 {

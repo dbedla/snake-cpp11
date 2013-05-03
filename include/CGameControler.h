@@ -1,19 +1,19 @@
 #ifndef CGAMECONTROLER_H
 #define CGAMECONTROLER_H
 
-#include "../include/CPoint.h"
-#include "../include/key_handler.h"
-#include "../include/frame.h"
-#include "../include/def.h"
+#include <CPoint.h>
+#include <key_handler.h>
+#include <frame.h>
+#include <def.h>
 
-#include "../include/snake.h"
-#include "../include/CMoveSnake.h"
-#include "../include/CLogger.h"
-#include "../include/CBasicWall.h"
-#include "../include/CColisionDetector.h"
-#include "../include/CItemsToEat.h"
-#include "../include/IFrame.h"
-#include "../include/CLogger.h"
+#include <snake.h>
+#include <CMoveSnake.h>
+#include <CLogger.h>
+#include <CBasicWall.h>
+#include <CColisionDetector.h>
+#include <CItemsToEat.h>
+#include <IFrame.h>
+#include <CLogger.h>
 
 #include <boost/date_time/posix_time/posix_time.hpp>
 #include <boost/thread/thread_time.hpp>

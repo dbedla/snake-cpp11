@@ -1,4 +1,4 @@
-#include "../include/CItemsToEat.h"
+#include <CItemsToEat.h>
 
 CItemToEat::CItemToEat():_rangeX(0), _rangeY(0){initRand();}
 

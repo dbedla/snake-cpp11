@@ -1,4 +1,4 @@
-#include "../include/CGameControler.h"
+#include <CGameControler.h>
 
 //#include "../include/CLogger.h"
 

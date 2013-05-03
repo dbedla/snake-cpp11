@@ -1,4 +1,4 @@
-#include "../include/CLogger.h"
+#include <CLogger.h>
 
 CLogger* CLogger::_instance = NULL;
 boost::mutex CLogger::_write_file_mutex;

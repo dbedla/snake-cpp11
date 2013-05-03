@@ -1,15 +1,15 @@
 #ifndef CMOVESNAKE_H
 #define CMOVESNAKE_H
 
-#include "IMoveFrameObj.h"
-#include "def.h"
-#include "CPoint.h"
+#include <IMoveFrameObj.h>
+#include <def.h>
+#include <CPoint.h>
 #include <map>
 #include <functional>
 #include <vector>
 #include <algorithm>
 #include <boost/thread.hpp>
-#include "IObserver.h"
+#include <IObserver.h>
 
 class CMoveSnake: public IMoveFrameObj<PointsList, Direction>, public IObserver<Direction>
 {
