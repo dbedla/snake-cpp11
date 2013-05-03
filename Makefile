@@ -30,6 +30,7 @@ all: release
 release: $(OBJ)
 	$(LD) $(OBJ) obj/main.o -o $(RELEASE_NAME) $(LFLAGS) 
 
+
 obj/%.o: src/%.cpp
 	$(CC) $(CFLAGS) $(INC) -c -o $@ $<
 	$(CC) $(CFLAGS) $(INC) -c -o obj/main.o main.cpp

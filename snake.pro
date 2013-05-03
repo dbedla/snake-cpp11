@@ -4,6 +4,7 @@
 #
 #-------------------------------------------------
 DEFINES += "__GXX_EXPERIMENTAL_CXX0X__=1"
+INCLUDEPATH += include
 
 SOURCES +=\
     src/main.cpp\
